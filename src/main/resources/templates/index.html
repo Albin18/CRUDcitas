@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Inicio</h1>
+        <a th:href="@{/agregar}">Crear Cita en Agenda</a>
+        <div th:if="${agendas != null and !agendas.empty}">
+            <table>
+                <tr border="1">
+                    <th>Asunto</th>
+                    <th>Fecha</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th> 
+                </tr>
+
+
+                <tr th:each="agenda: ${agendas}">
+                    <td th:text="${persona.asunto}">Mostrar Asunto</td>
+                    <td th:text="${persona.fecha}">Mostrar Fecha</td>
+                    <td th:text="${persona.email}">Mostrar Email</td>
+                    <td th:text="${persona.telefono}">Mostrar Telefono</td>
+                    <td th:href="@{/editar/} + ${agenda.idAgenda"} th:text="Editar"></td>
+                    <td th:href="@{/eliminar(idAgenda=${agenda.idAgenda})}"} th:text="Eliminar"></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${agendas == null or agendas.empty}">
+            Los datos de la Agenda estan vacios
+        </div>
+    </body>
+</html>
